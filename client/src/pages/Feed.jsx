@@ -13,40 +13,25 @@ const Feed = () => {
   const [searchQuery, setSearchQuery] = useState([])
 }
 
-
-
-
 const handleChange = (event) => {
   setSearchQuery(event.target.value)
 }
 return (
   <div>
-    <div className='search'>
-      <Search 
+    <div className="search">
+      <Search
         value={searchQuery}
         onChange={handleChange}
         onSubmit={getSearchResults}
       />
       <h2>Search Results</h2>
-      <section className='search-results container'>
-      {searched && searchResults.map((result)=> (
-        <Link to={`/comments/details/${result.id}`} key={result.id}></Link>
-
-
-
-
-      
-      ))}
+      <section className="search-results container">
+        {searched &&
+          searchResults.map((result) => (
+            <Link to={`/comments/details/${result.id}`} key={result.id}></Link>
+          ))}
+      </section>
     </div>
-
-
-
-
-
-
-
-
-
   </div>
 )
 export default Home
