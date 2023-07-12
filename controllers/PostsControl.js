@@ -9,7 +9,7 @@ const index = async (req, res) => {
 
 const show = async (req, res) => {
   const post = await Post.findById(req.params.id)
-  res.render('posts/show', {})
+  res.render('posts/show', { post })
 }
 
 const newPost = async (req, res) => {
@@ -21,7 +21,7 @@ const create = async (req, res) => {
     const post = await Post.create(req.body)
     res.redirect('/posts')
   } catch (error) {
-    res.render('posts/new', { errorMsg: err.message })
+    res.render('posts/new', { errorMsg: error.message })
   }
 }
 
