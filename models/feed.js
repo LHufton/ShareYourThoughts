@@ -13,4 +13,4 @@ const feedSchema = new Schema(
 
 const Feed = model('Feed', feedSchema)
 
-module.exports = Feed
+module.exports = feedSchema
