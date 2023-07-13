@@ -1,8 +1,7 @@
-Feed.jsx
-
 import React from 'react'
-import Posts from './posts'
-import Comments from './comments'
+import Posts from './components/posts'
+import Comments from './components/comments'
+import User from './components/user'
 
 const Feed = () => {
   return (
