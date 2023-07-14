@@ -9,3 +9,4 @@ export const UserSignIn = async (data) => {
     throw error
   }
 }
+export default Client
