@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react'
-import './App.css'
+import { Router, Routes, Route } from 'react-router-dom'
+import { CheckSession } from './services/Auth'
 import React from 'react'
 import Feed from './Components/Feed'
-import { Router, Routes, Route } from 'react-router-dom'
-import Nav from './Components/Nav'
+import Home from './Pages/Home'
 import Posts from './Components/Posts'
 import Comments from './Components/Comments'
-import Home from './Pages/Home'
+import Nav from './Components/Nav'
+import './App.css'
 
 const App = () => {
   const [user, setUser] = useState(null)
