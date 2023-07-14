@@ -8,10 +8,13 @@ const postSchema = new Schema(
   { timestamps: true }
 )
 
-const commentSchema = new Schema({
-  title: { type: String, required: true },
-  body: { type: String }
-})
+const commentSchema = new Schema(
+  {
+    title: { type: String, required: true },
+    body: { type: String }
+  },
+  { timestamps: true }
+)
 
 const feedSchema = new Schema(
   {
@@ -25,4 +28,4 @@ const feedSchema = new Schema(
 
 const Feed = model('Feed', feedSchema)
 
-module.exports = feedSchema
+module.exports = Feed

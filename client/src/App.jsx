@@ -1,4 +1,4 @@
-// import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import './App.css'
 import React from 'react'
 import Feed from './Components/Feed'
@@ -9,6 +9,25 @@ import Comments from './Components/Comments'
 import Home from './Pages/Home'
 
 const App = () => {
+  const [user, setUser] = useState(null)
+
+  useEffect(() => {
+    const token = localStorage.getItem('token')
+    if (token) {
+      checkToken()
+    }
+  }, [])
+
+  const handleLogOut = () => {
+    setUser(null)
+    localStorage.clear()
+  }
+
+  const checkToken = async () => {
+    const user = await CheckSession()
+    setUser(user)
+  }
+
   return (
     <div className='"App'>
       <Nav user={user} handleLogOut={handleLogOut} />
