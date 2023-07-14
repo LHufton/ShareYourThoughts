@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Router, Routes, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { CheckSession } from './services/Auth'
 import React from 'react'
 import Feed from './Components/Feed'
@@ -30,7 +30,7 @@ const App = () => {
   }
 
   return (
-    <div className='"App'>
+    <div className="App">
       <Nav user={user} handleLogOut={handleLogOut} />
       <main>
         <Router>
