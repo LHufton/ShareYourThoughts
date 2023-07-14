@@ -1,4 +1,5 @@
-const { Schema, model } = require('mongoose')
+const mongoose = require('mongoose')
+const feedSchema = require('./Feed')
 
 const feedSchema = new Schema(
   {

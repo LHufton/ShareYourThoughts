@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react'
+// import { useState, useEffect } from 'react'
 import './App.css'
 import React from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Feed from './Components/Feed'
-import UserProfile from './pages/UserProfile'
+import { Router, Routes, Route } from 'react-router-dom'
 import Nav from './Components/Nav'
 import Posts from './Components/Posts'
+import Comments from './Components/Comments'
 import Home from './Pages/Home'
 
 const App = () => {
@@ -14,11 +14,12 @@ const App = () => {
       <Nav user={user} handleLogOut={handleLogOut} />
       <main>
         <Router>
-          <Route path="/" element={<Home />} />
-          <Route path="/profile" element={<UserProfile />} />
-          <Route path="/posts" element={<AllPosts />} />
-          <Route path="/comments" element={<AllComments />} />
-          <Route path="/feed" element={<Feed />} />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/posts" element={<Posts />} />
+            <Route path="/comments" element={<Comments />} />
+            <Route path="/feed" element={<Feed />} />
+          </Routes>
         </Router>
       </main>
     </div>
