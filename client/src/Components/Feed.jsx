@@ -1,6 +1,6 @@
 import React from 'react'
-import Posts from './Components/Posts'
-import Comments from './Components/Comments'
+import Posts from './Posts'
+import Comments from './Comments'
 
 const Feed = () => {
   return (
