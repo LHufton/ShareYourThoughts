@@ -4,7 +4,7 @@ export const BASE_URL = 'http://localhost:3001'
 
 const Client = Axios.create({ baseURL: BASE_URL })
 
-client.interceptors.request.use(
+Client.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('token')
     if (token) {
