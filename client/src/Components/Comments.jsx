@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 
 const Comments = (props) => {
   const [comments, setComments] = useState([])
@@ -45,6 +45,18 @@ const Comments = (props) => {
 
   return (
     <div>
+      <form className="commentDisplay" onSubmit={handleSubmit}>
+        <textarea
+          name="text"
+          rows={5}
+          cols={50}
+          placeholder="Enter text."
+        ></textarea>
+        <button className="submitCommentButton" type="submit">
+          Submit
+        </button>
+      </form>
+
       <h2>Comments</h2>
       {comments.map((comment) => (
         <div key={comment.id}>
@@ -54,18 +66,30 @@ const Comments = (props) => {
                 value={editedCommentText}
                 onChange={(e) => setEditedCommentText(e.target.value)}
               ></textarea>
-              <button onClick={() => handleUpdateComment(comment.id)}>
+              <button
+                className="updateCommentButton"
+                onClick={() => handleUpdateComment(comment.id)}
+              >
                 Save
               </button>
-              <button onClick={handleCancelEdit}>Cancel</button>
+              <button
+                className="cancelCommentButton"
+                onClick={handleCancelEdit}
+              >
+                Cancel
+              </button>
             </div>
           ) : (
             <div>
               <p>{comment.text}</p>
-              <button onClick={() => handleDeleteComment(comment.id)}>
+              <button
+                className="deleteCommentButton"
+                onClick={() => handleDeleteComment(comment.id)}
+              >
                 Delete
               </button>
               <button
+                className="EditCommentButton"
                 onClick={() => handleEditComment(comment.id, comment.text)}
               >
                 Edit
@@ -74,16 +98,6 @@ const Comments = (props) => {
           )}
         </div>
       ))}
-
-      <form onSubmit={handleSubmit}>
-        <textarea
-          name="text"
-          rows={4}
-          cols={50}
-          placeholder="Enter text."
-        ></textarea>
-        <button type="submit">Submit</button>
-      </form>
     </div>
   )
 }

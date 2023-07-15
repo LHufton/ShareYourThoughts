@@ -4,9 +4,9 @@ const Home = () => {
   let navigate = useNavigate()
 
   return (
-    <div>
-      <h1> Welcome home!</h1>
-      <h2> What would you like to talk about?</h2>
+    <div className="HomeContainer">
+      <h1 className="homeH1"> Welcome home!</h1>
+      <h2 className="homeh2"> What's on your mind?</h2>
       <section className="welcome-signin">
         <button onClick={() => navigate('signin')}>Let's go!</button>
       </section>

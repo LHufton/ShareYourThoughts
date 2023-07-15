@@ -55,13 +55,12 @@ const App = () => {
 
   return (
     <div className={`App ${themeMode}`}>
-      <header>
+      <header></header>
+      <Nav user={user} handleLogOut={handleLogOut} />
+      <main>
         <button className="darkButton" onClick={toggleTheme}>
           Light/Dark Mode
         </button>
-      </header>
-      <Nav user={user} handleLogOut={handleLogOut} />
-      <main>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/signin" element={<SignIn setUser={setUser} />} />

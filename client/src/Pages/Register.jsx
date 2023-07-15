@@ -5,20 +5,6 @@ import { RegisterUser } from '../services/Auth'
 const Register = () => {
   let navigate = useNavigate()
 
-  const containerStyle = {
-    border: '1px solid #ccc',
-    padding: '5px',
-    marginButton: '10px',
-    width: 200
-  }
-
-  const textboxStyle = {
-    border: '1px solid #ccc',
-    padding: '5px',
-    marginButton: '10px',
-    width: 200
-  }
-
   const [formValues, setFormValues] = useState({
     name: '',
     email: '',
@@ -50,9 +36,10 @@ const Register = () => {
     <div className="signin col">
       <div className="card-overlay centered">
         <form className="col" onSubmit={handleSubmit}>
-          <div style={containerStyle} className="input-wrapper">
+          <div className="input-wrapper">
             <label htmlFor="name">Name</label>
             <input
+              className="inputTextbox"
               onChange={handleChange}
               name="name"
               type="text"
