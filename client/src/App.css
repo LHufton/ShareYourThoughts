@@ -48,6 +48,8 @@
   list-style: none;
   padding: 0;
   margin: 0;
+  font-size: 18px;
+  max-width: 100%;
 }
 
 .nav-links li {
@@ -55,11 +57,34 @@
 }
 
 header {
-  background-color: #f2f2f2;
+  background-color: #ee9149;
   padding: 10px;
 }
 
 nav {
   max-width: 960px;
   margin: 0 auto;
+}
+
+
+/* Styles for light mode */
+.App.light {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+/* Styles for dark mode */
+.App.dark {
+  background-color: #333333;
+  color: #ffffff;
+}
+
+.darkButton {
+  background-color: #000000;
+  color: white;
+  display: flex;
+  margin: 10px;
+  border: 1px solid white;
+
+
 }

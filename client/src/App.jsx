@@ -11,6 +11,29 @@ import Posts from './Components/Posts'
 import './App.css'
 
 const App = () => {
+  const [themeMode, setThemeMode] = useState('light')
+
+  const toggleTheme = () => {
+    setThemeMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'))
+  }
+
+  useEffect(() => {
+    const root = document.documentElement
+    root.classList.remove('light', 'dark')
+    root.classList.add(themeMode)
+  }, [themeMode])
+
+  useEffect(() => {
+    const storedTheme = localStorage.getItem('theme')
+    if (storedTheme) {
+      setThemeMode(storedTheme)
+    }
+  }, [])
+
+  useEffect(() => {
+    localStorage.setItem('theme', themeMode)
+  }, [themeMode])
+
   const [user, setUser] = useState(null)
 
   useEffect(() => {
@@ -31,7 +54,12 @@ const App = () => {
   }
 
   return (
-    <div className="App">
+    <div className={`App ${themeMode}`}>
+      <header>
+        <button className="darkButton" onClick={toggleTheme}>
+          Light/Dark Mode
+        </button>
+      </header>
       <Nav user={user} handleLogOut={handleLogOut} />
       <main>
         <Routes>
