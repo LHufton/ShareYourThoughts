@@ -1,9 +1,13 @@
 import { useEffect, useState } from 'react'
 import { GetPosts } from '../Services/PostServices'
-import Comments from '../Components/Comments'
+import { GetComments } from '../Services/CommentServices'
+import { useNavigate } from 'react-router-dom'
 
-const Feed = () => {
+const Feed = ({ user }) => {
+  let navigate = useNavigate()
+
   const [posts, setPosts] = useState([])
+  const [comments, setComments] = useState([])
 
   useEffect(() => {
     const handlePosts = async () => {
