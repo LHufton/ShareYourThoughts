@@ -33,7 +33,7 @@ const Nav = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/Registration">Registration</Link>
+                <Link to="/Register">Register</Link>
               </li>
             </>
           ) : (
