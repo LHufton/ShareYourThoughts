@@ -5,6 +5,20 @@ import { RegisterUser } from '../services/Auth'
 const Register = () => {
   let navigate = useNavigate()
 
+  const containerStyle = {
+    border: '1px solid #ccc',
+    padding: '5px',
+    marginButton: '10px',
+    width: 200
+  }
+
+  const textboxStyle = {
+    border: '1px solid #ccc',
+    padding: '5px',
+    marginButton: '10px',
+    width: 200
+  }
+
   const [formValues, setFormValues] = useState({
     name: '',
     email: '',
@@ -36,7 +50,7 @@ const Register = () => {
     <div className="signin col">
       <div className="card-overlay centered">
         <form className="col" onSubmit={handleSubmit}>
-          <div className="input-wrapper">
+          <div style={containerStyle} className="input-wrapper">
             <label htmlFor="name">Name</label>
             <input
               onChange={handleChange}
@@ -47,7 +61,7 @@ const Register = () => {
               required
             />
           </div>
-          <div className="input-wrapper">
+          <div style={containerStyle} className="input-wrapper">
             <label htmlFor="email">Email</label>
             <input
               onChange={handleChange}
@@ -56,10 +70,11 @@ const Register = () => {
               placeholder="example@example.com"
               value={formValues.email}
               required
+              style={textboxStyle}
             />
           </div>
 
-          <div className="input-wrapper">
+          <div style={containerStyle} className="input-wrapper">
             <label htmlFor="password">Password</label>
             <input
               onChange={handleChange}
@@ -67,9 +82,10 @@ const Register = () => {
               name="password"
               value={formValues.password}
               required
+              style={textboxStyle}
             />
           </div>
-          <div className="input-wrapper">
+          <div style={containerStyle} className="input-wrapper">
             <label htmlFor="confirmPassword">Confirm Password</label>
             <input
               onChange={handleChange}
@@ -80,13 +96,14 @@ const Register = () => {
             />
           </div>
           <button
+            style={containerStyle}
             disabled={
               !formValues.email ||
               (!formValues.password &&
                 formValues.confirmPassword === formValues.password)
             }
           >
-            Sign In
+            Register
           </button>
         </form>
       </div>

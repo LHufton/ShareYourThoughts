@@ -10,8 +10,8 @@ const Nav = () => {
 
   return (
     <header>
-      <div>
-        <ul>
+      <nav>
+        <ul className="nav-links">
           <li>
             <Link to="/">Home</Link>
           </li>
@@ -24,7 +24,6 @@ const Nav = () => {
           <li>
             <Link to="/Feed">Feed</Link>
           </li>
-          {/* Ternary function that checks whether the user is logged in. */}
           {!isLoggedIn ? (
             <>
               <li>
@@ -44,7 +43,7 @@ const Nav = () => {
             </li>
           )}
         </ul>
-      </div>
+      </nav>
     </header>
   )
 }
