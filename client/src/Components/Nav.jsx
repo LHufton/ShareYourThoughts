@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 const Nav = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
@@ -13,30 +13,34 @@ const Nav = () => {
       <div>
         <ul>
           <li>
-            <NavLink to="/">Home</NavLink>
+            <Link to="/">Home</Link>
           </li>
           <li>
-            <NavLink to="/Comments">Comments</NavLink>
+            <Link to="/Comments">Comments</Link>
           </li>
           <li>
-            <NavLink to="/Posts">Posts</NavLink>
+            <Link to="/Posts">Posts</Link>
           </li>
+          <li>
+            <Link to="/Feed">Feed</Link>
+          </li>
+          {/* Ternary function that checks whether the user is logged in. */}
           {!isLoggedIn ? (
             <>
               <li>
-                <NavLink to="/SignIn" onClick={handleAuthClick}>
+                <Link to="/SignIn" onClick={handleAuthClick}>
                   Sign In
-                </NavLink>
+                </Link>
               </li>
               <li>
-                <NavLink to="/Registration">Registration</NavLink>
+                <Link to="/Registration">Registration</Link>
               </li>
             </>
           ) : (
             <li>
-              <NavLink to="/SignOut" onClick={handleAuthClick}>
+              <Link to="/SignOut" onClick={handleAuthClick}>
                 Sign Out
-              </NavLink>
+              </Link>
             </li>
           )}
         </ul>

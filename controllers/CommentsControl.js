@@ -1,4 +1,4 @@
-const Comment = require('../models/comment')
+const { Comment, User } = require('../models/comment')
 
 const index = async (req, res) => {
   console.log(req.query)

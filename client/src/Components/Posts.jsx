@@ -42,8 +42,8 @@ const Posts = (props) => {
   }
 
   return (
-    <div>
-      <h2>Posts</h2>
+    <div className="Posts">
+      <h4>Posts</h4>
       {posts.map((post) => (
         <div key={post.id}>
           {editingPostId === post.id ? (

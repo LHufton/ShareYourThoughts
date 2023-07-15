@@ -1,27 +1,13 @@
 const { Schema, model } = require('mongoose')
 
-const postSchema = new Schema(
-  {
-    title: { type: String, required: true },
-    body: { type: String }
-  },
-  { timestamps: true }
-)
-
-const commentSchema = new Schema(
-  {
-    title: { type: String, required: true },
-    body: { type: String }
-  },
-  { timestamps: true }
-)
-
 const feedSchema = new Schema(
   {
     content: { type: String, required: true },
     type: { type: String, enum: ['post', 'comment'], required: true },
     author: { type: Schema.Types.ObjectId, ref: 'User', required: true },
-    parent: { type: Schema.Types.ObjectId, ref: 'Feed' }
+    parent: { type: Schema.Types.ObjectId, ref: 'Feed' },
+    posts: [{ type: Schema.Types.ObjectId, ref: 'Posts' }],
+    comments: [{ type: Schema.Types.ObjectId, ref: 'Comments' }]
   },
   { timestamps: true }
 )

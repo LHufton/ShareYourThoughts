@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react'
-import { Routes, Route } from 'react-router-dom'
-import { CheckSession } from './services/Auth'
-import React from 'react'
-import Feed from './Pages/Feed'
-import Home from './Pages/Home'
+import { Route, Routes } from 'react-router-dom'
+import { CheckSession } from './Services/Auth'
 import Nav from './Components/Nav'
+import Feed from './Pages/Feed'
+import SignIn from './Pages/SignIn'
+import Home from './Pages/Home'
+import Comments from './Components/Comments'
+import Posts from './Components/Posts'
 import './App.css'
 
 const App = () => {
@@ -34,6 +36,9 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/feed" element={<Feed />} />
+          <Route path="/comments" element={<Comments />} />
+          <Route path="/posts=" element={<Posts />} />
+          <Route path="/SignIn=" element={<SignIn />} />
         </Routes>
       </main>
     </div>
