@@ -1,8 +1,10 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const Comments = (props) => {
+  let navigate = useNavigate()
   const [comments, setComments] = useState([])
-  const [editingCommentId, setEditingCommentId] = useState(null)
+  const [editedCommentId, setEditedCommentId] = useState(null)
   const [editedCommentText, setEditedCommentText] = useState('')
   const [date, setDate] = useState('none')
 
@@ -26,7 +28,7 @@ const Comments = (props) => {
   }
 
   const handleEditComment = (commentId, commentText) => {
-    setEditingCommentId(commentId)
+    setEditedCommentId(commentId)
     setEditedCommentText(commentText)
   }
 
@@ -38,12 +40,12 @@ const Comments = (props) => {
       return comment
     })
     setComments(updatedComments)
-    setEditingCommentId(null)
+    setEditedCommentId(null)
     setEditedCommentText('')
   }
 
   const handleCancelEdit = () => {
-    setEditingCommentId(null)
+    setEditedCommentId(null)
     setEditedCommentText('')
   }
 
@@ -69,7 +71,7 @@ const Comments = (props) => {
       <h2>Comments</h2>
       {comments.map((comment) => (
         <div key={comment.id}>
-          {editingCommentId === comment.id ? (
+          {editedCommentId === comment.id ? (
             <div>
               <textarea
                 value={editedCommentText}

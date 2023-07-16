@@ -20,9 +20,6 @@ const Feed = ({ user }) => {
       {posts.map((post) => (
         <div className="card" key={post.id}>
           <h3>{post.title}</h3>
-          <div>
-            <img src={post.image} alt="post" />
-          </div>
           {post.body.length >= 100 ? (
             <p>{post.body.substring(0, 100)}...</p>
           ) : (
@@ -33,7 +30,7 @@ const Feed = ({ user }) => {
     </div>
   ) : (
     <div className="protected">
-      <h3>Oops! You must be signed in to do that!</h3>
+      <h3>You are not signed in!</h3>
       <button onClick={() => navigate('/signin')}>Sign In</button>
     </div>
   )
