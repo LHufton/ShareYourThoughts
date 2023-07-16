@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const controller = require('../controllers/AuthControl')
+const controller = require('../controllers/AuthController')
 const middleware = require('../middleware')
 
 router.post('/login', controller.Login)
