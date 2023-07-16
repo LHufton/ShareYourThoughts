@@ -39,7 +39,6 @@ const Register = () => {
           <div className="input-wrapper">
             <label htmlFor="name">Name</label>
             <input
-              className="inputTextbox"
               onChange={handleChange}
               name="name"
               type="text"
@@ -48,7 +47,7 @@ const Register = () => {
               required
             />
           </div>
-          <div style={containerStyle} className="input-wrapper">
+          <div className="input-wrapper">
             <label htmlFor="email">Email</label>
             <input
               onChange={handleChange}
@@ -57,11 +56,10 @@ const Register = () => {
               placeholder="example@example.com"
               value={formValues.email}
               required
-              style={textboxStyle}
             />
           </div>
 
-          <div style={containerStyle} className="input-wrapper">
+          <div className="input-wrapper">
             <label htmlFor="password">Password</label>
             <input
               onChange={handleChange}
@@ -69,10 +67,9 @@ const Register = () => {
               name="password"
               value={formValues.password}
               required
-              style={textboxStyle}
             />
           </div>
-          <div style={containerStyle} className="input-wrapper">
+          <div className="input-wrapper">
             <label htmlFor="confirmPassword">Confirm Password</label>
             <input
               onChange={handleChange}
@@ -83,14 +80,13 @@ const Register = () => {
             />
           </div>
           <button
-            style={containerStyle}
             disabled={
               !formValues.email ||
               (!formValues.password &&
                 formValues.confirmPassword === formValues.password)
             }
           >
-            Register
+            Sign In
           </button>
         </form>
       </div>

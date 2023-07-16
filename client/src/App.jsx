@@ -11,6 +11,25 @@ import Posts from './Components/Posts'
 import './App.css'
 
 const App = () => {
+  const [user, setUser] = useState(null)
+
+  useEffect(() => {
+    const token = localStorage.getItem('token')
+    if (token) {
+      checkToken()
+    }
+  }, [])
+
+  const handleLogOut = () => {
+    setUser(null)
+    localStorage.clear()
+  }
+
+  const checkToken = async () => {
+    const user = await CheckSession()
+    setUser(user)
+  }
+
   const [themeMode, setThemeMode] = useState('light')
 
   const toggleTheme = () => {
@@ -33,25 +52,6 @@ const App = () => {
   useEffect(() => {
     localStorage.setItem('theme', themeMode)
   }, [themeMode])
-
-  const [user, setUser] = useState(null)
-
-  useEffect(() => {
-    const token = localStorage.getItem('token')
-    if (token) {
-      checkToken()
-    }
-  }, [])
-
-  const handleLogOut = () => {
-    setUser(null)
-    localStorage.clear()
-  }
-
-  const checkToken = async () => {
-    const user = await CheckSession()
-    setUser(user)
-  }
 
   return (
     <div className={`App ${themeMode}`}>

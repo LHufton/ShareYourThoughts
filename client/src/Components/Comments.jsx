@@ -4,7 +4,11 @@ const Comments = (props) => {
   const [comments, setComments] = useState([])
   const [editingCommentId, setEditingCommentId] = useState(null)
   const [editedCommentText, setEditedCommentText] = useState('')
+  const [date, setDate] = useState('none')
 
+  const onDateChange = (e) => {
+    setDate(e.target.value)
+  }
   const handleSubmit = (e) => {
     e.preventDefault()
     const newComment = {
@@ -52,6 +56,11 @@ const Comments = (props) => {
           cols={50}
           placeholder="Enter text."
         ></textarea>
+
+        <div>
+          <input type="date" value={date} onChange={onDateChange} />
+        </div>
+
         <button className="submitCommentButton" type="submit">
           Submit
         </button>
