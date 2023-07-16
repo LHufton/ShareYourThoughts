@@ -16,13 +16,13 @@ const Nav = () => {
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to="/Comments">Comments</Link>
+            <Link to="/Feed">Feed</Link>
           </li>
           <li>
             <Link to="/Posts">Posts</Link>
           </li>
           <li>
-            <Link to="/Feed">Feed</Link>
+            <Link to="/Comments">Comments</Link>
           </li>
           {!isLoggedIn ? (
             <>

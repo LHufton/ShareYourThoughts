@@ -1,12 +1,24 @@
 import { useState } from 'react'
+import axios from 'axios'
 
-const Posts = (props) => {
-  const [posts, setPosts] = useState([])
+const Posts = ({ posts, setPosts }) => {
+  const initialState = {
+    postType: '',
+    subject: '',
+    message: ''
+  }
+
+  const [postState, setPostState] = useState([initialState])
+
   const [editingPostId, setEditingPostId] = useState(null)
   const [editedPostText, setEditedPostText] = useState('')
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
+    let response = await axios.post('http://localhost:3001/posts', postState)
+    let newList = [...posts]
+    newList.push(response.data)
+
     const newPost = {
       id: Date.now(),
       text: e.target.text.value
@@ -29,7 +41,7 @@ const Posts = (props) => {
       if (post.id === postId) {
         return { ...post, text: editedPostText }
       }
-      return Post
+      return post
     })
     setPosts(updatedPosts)
     setEditingPostId(null)
