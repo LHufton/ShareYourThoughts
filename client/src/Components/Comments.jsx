@@ -48,8 +48,8 @@ const Comments = (props) => {
     setEditedCommentId(null)
     setEditedCommentText('')
   }
-
-  return (
+  const { user } = props
+  return user ? (
     <div>
       <form className="commentDisplay" onSubmit={handleSubmit}>
         <textarea
@@ -110,7 +110,7 @@ const Comments = (props) => {
         </div>
       ))}
     </div>
-  )
+  ) : null
 }
 
 export default Comments

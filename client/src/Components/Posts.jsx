@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import axios from 'axios'
 
 const Posts = (props) => {
   const [posts, setPosts] = useState([])
@@ -12,17 +13,13 @@ const Posts = (props) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    const newComment = {
-      id: Date.now(),
-      text: e.target.text.value
-    }
-
     const newPost = {
       id: Date.now(),
       text: e.target.text.value
     }
+
     setPosts((prevPosts) => [...prevPosts, newPost])
-    e.target.reset()
+    // e.target.reset()
   }
 
   const handleDeletePost = (postId) => {
@@ -73,7 +70,7 @@ const Posts = (props) => {
       <h2>posts</h2>
       {posts.map((post) => (
         <div key={post.id}>
-          {editedpostId === post.id ? (
+          {editedPostId === post.id ? (
             <div>
               <textarea
                 value={editedpostText}
