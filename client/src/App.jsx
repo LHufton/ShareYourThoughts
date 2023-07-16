@@ -65,9 +65,9 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/signin" element={<SignIn setUser={setUser} />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/comments" element={<Comments />} />
+          <Route path="/comments" element={<Comments user={user} />} />
           <Route path="/feed" element={<Feed user={user} />} />
-          <Route path="/posts" element={<Posts />} />
+          <Route path="/posts" element={<Posts user={user} />} />
         </Routes>
       </main>
     </div>

@@ -1,43 +1,51 @@
-const { Comment, User } = require('../models/comment')
+const { Comment } = require('../models')
 
-const index = async (req, res) => {
-  console.log(req.query)
-  res.render('comments/index', {
-    comments: await Comment.find()
-  })
-}
-
-const show = async (req, res) => {
-  const comment = await Comment.findById(req.params.id)
-  res.render('comments/show', {})
-}
-
-const newComment = async (req, res) => {
-  res.render('comments/new', { title: 'New Comment', errorMsg: '' })
-}
-
-const create = async (req, res) => {
+const GetComments = async (req, res) => {
   try {
-    const comment = await Comment.create(req.body)
-    res.redirect('/comments')
+    const comments = await Comment.find({})
+    res.send(Comments)
   } catch (error) {
-    res.render('comments/new', { errorMsg: err.message })
+    throw error
   }
 }
 
-const deleteComment = async (req, res) => {
+const CreateComment = async (req, res) => {
   try {
-    await Comment.findOneAndDelete({ _id: req.params.id })
-    res.redirect('/comments')
+    const comment = await Comment.create({ ...req.body })
+    res.send(comment)
   } catch (error) {
-    console.log(error)
+    throw error
+  }
+}
+
+const UpdateComment = async (req, res) => {
+  try {
+    const comment = await Comment.findByIdAndUpdate(
+      req.params.Comment_id,
+      req.body
+    )
+    res.send(comment)
+  } catch (error) {
+    throw error
+  }
+}
+
+const DeleteComment = async (req, res) => {
+  try {
+    await Comment.deleteOne({ _id: req.params.Comment_id })
+    res.send({
+      msg: 'Comment Deleted',
+      payload: req.params.Comment_id,
+      status: 'Ok'
+    })
+  } catch (error) {
+    throw error
   }
 }
 
 module.exports = {
-  index,
-  show,
-  new: newComment,
-  create,
-  delete: deleteComment
+  GetComments,
+  CreateComment,
+  UpdateComment,
+  DeleteComment
 }

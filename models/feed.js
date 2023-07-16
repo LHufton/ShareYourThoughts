@@ -12,6 +12,6 @@ const feedSchema = new Schema(
   { timestamps: true }
 )
 
-const Feed = model('Feed', feedSchema)
+// const Feed = model('Feed', feedSchema)
 
-module.exports = Feed
+module.exports = feedSchema

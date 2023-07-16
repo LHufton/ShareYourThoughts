@@ -51,6 +51,7 @@ const Comments = (props) => {
   const { user } = props
   return user ? (
     <div>
+      <div>Comments Page</div>
       <form className="commentDisplay" onSubmit={handleSubmit}>
         <textarea
           name="text"
