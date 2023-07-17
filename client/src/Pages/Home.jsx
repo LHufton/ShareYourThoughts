@@ -6,7 +6,7 @@ const Home = () => {
   // const handleAuthClick = () => {
   //   setIsLoggedIn(!isLoggedIn)
   // }
-  // let navigate = useNavigate()
+  let navigate = useNavigate()
 
   return (
     <div className="HomeContainer">

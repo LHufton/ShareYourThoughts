@@ -15,11 +15,11 @@ const Posts = (props) => {
     e.preventDefault()
     const newPost = {
       id: Date.now(),
-      text: e.target.text.value
+      text: e.target.text.value,
+      date: date
     }
 
     setPosts((prevPosts) => [...prevPosts, newPost])
-    // e.target.reset()
   }
 
   const handleDeletePost = (postId) => {

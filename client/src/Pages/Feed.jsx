@@ -14,8 +14,7 @@ const Feed = ({ user }) => {
     }
     handlePosts()
   }, [])
-
-  return user ? (
+  user ? (
     <div className="grid col-4">
       {posts.map((post) => (
         <div className="card" key={post.id}>
