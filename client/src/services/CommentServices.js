@@ -9,7 +9,7 @@ export const GetComments = async () => {
   }
 }
 
-export const CreateComments = async () => {
+export const CreateComments = async (comment) => {
   try {
     const res = await Client.post('/comments')
     return res.data
@@ -18,18 +18,18 @@ export const CreateComments = async () => {
   }
 }
 
-export const UpdateComments = async () => {
+export const UpdateComments = async (comment) => {
   try {
-    const res = await Client.put('/comments')
+    const res = await Client.put(`/comments/${comments_id}`)
     return res.data
   } catch (error) {
     throw error
   }
 }
 
-export const DeleteComments = async () => {
+export const DeleteComments = async (comments_id) => {
   try {
-    const res = await Client.delete('/comments')
+    const res = await Client.delete(`/comments/${comments_id}`)
     return res.data
   } catch (error) {
     throw error

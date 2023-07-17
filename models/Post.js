@@ -2,9 +2,9 @@ const { Schema } = require('mongoose')
 
 const postSchema = new Schema(
   {
-    title: { type: String, required: true },
-    body: { type: String },
-    isPublic: { type: Boolean, default: true }
+    title: { type: String, required: false },
+    content: { type: String },
+    isPublic: { type: Boolean, default: false }
   },
   { timestamps: true }
 )

@@ -1,10 +1,25 @@
 const router = require('express').Router()
 const controller = require('../controllers/PostsController')
+const middleware = require('../middleware')
 
-router.get('/', controller.index)
-router.get('/new', controller.new)
-router.get('/:id', controller.show)
-router.post('/', controller.create)
-router.delete('/:id', controller.deletePost)
+router.get('/', controller.GetPosts)
+router.post(
+  '/',
+  middleware.stripToken,
+  middleware.verifyToken,
+  controller.CreatePost
+)
+router.put(
+  '/:post_id',
+  middleware.stripToken,
+  middleware.verifyToken,
+  controller.UpdatePost
+)
+router.delete(
+  '/:post_id',
+  middleware.stripToken,
+  middleware.verifyToken,
+  controller.DeletePost
+)
 
 module.exports = router

@@ -1,112 +1,73 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { BASE_URL } from '../Services/api'
 import axios from 'axios'
+import Client from '../Services/api'
 
-const Posts = (props) => {
+const Post = (props) => {
+  const [formValues, setFormValues] = useState({ content: '' })
   const [posts, setPosts] = useState([])
-  const [editedPostId, setEditedPostId] = useState(null)
-  const [editedPostText, setEditedPostText] = useState('')
-  const [date, setDate] = useState('none')
+  // const [date, setDate] = useState('none')
 
-  const onDateChange = (e) => {
-    setDate(e.target.value)
-  }
-
+  // const onDateChange = (e) => {
+  //   setDate(e.target.value)
+  //   // const newpost = {
+  //   //   id: Date.now(),
+  //   //   text: e.target.text.value,
+  //   //   date: date
+  //   // }
   const handleSubmit = async (e) => {
     e.preventDefault()
-    const newPost = {
-      id: Date.now(),
-      text: e.target.text.value,
-      date: date
+    console.log(formValues)
+    let response = await Client.post('/posts', formValues)
+    setPosts([...posts, response.data])
+    setFormValues({ content: '' })
+  }
+  const handleChange = (e) => {
+    setFormValues({ content: e.target.value })
+  }
+  useEffect(() => {
+    console.log('Inside UseEffect')
+    const getPosts = async () => {
+      let response = await axios.get(`${BASE_URL}/posts`)
+      console.log(response)
+      console.log('should have response')
+      setPosts(response.data)
     }
+    getPosts()
+  }, [])
 
-    setPosts((prevPosts) => [...prevPosts, newPost])
-  }
-
-  const handleDeletePost = (postId) => {
-    setPosts((prevPosts) => prevPosts.filter((post) => post.id !== postId))
-  }
-
-  const handleEditPost = (postId, postText) => {
-    setEditedPostId(postId)
-    setEditedPostText(postText)
-  }
-
-  const handleUpdatePost = (postId, postText) => {
-    const updatedPosts = posts.map((post) => {
-      if (post.id === postId) {
-        return { ...post, text: editedPostText }
-      }
-      return Post
-    })
-    setPosts(updatedPosts)
-    setEditedPostId(null)
-    setEditedPostText('')
-  }
-
-  const handleCancelEdit = () => {
-    setEditedPostId(null)
-    setEditedPostText('')
+  const handleDeletepost = async (id) => {
+    await Client.delete(`/posts/${id}`)
+    setPosts(posts.filter((post) => post._id !== id))
   }
 
   return (
     <div>
-      <form className="postDisplay" onSubmit={handleSubmit}>
-        <textarea
-          name="text"
-          rows={5}
-          cols={50}
-          placeholder="Enter text."
-        ></textarea>
-
-        <div>
-          <input type="date" value={date} onChange={onDateChange} />
-        </div>
-
-        <button className="submitpostButton" type="submit">
-          Submit
-        </button>
-      </form>
-
-      <h2>posts</h2>
-      {posts.map((post) => (
-        <div key={post.id}>
-          {editedPostId === post.id ? (
-            <div>
-              <textarea
-                value={editedpostText}
-                onChange={(e) => setEditedpostText(e.target.value)}
-              ></textarea>
-              <button
-                className="updatepostButton"
-                onClick={() => handleUpdatepost(post.id)}
-              >
-                Save
-              </button>
-              <button className="cancelpostButton" onClick={handleCancelEdit}>
-                Cancel
-              </button>
-            </div>
-          ) : (
-            <div>
-              <p>{post.text}</p>
-              <button
-                className="deletepostButton"
-                onClick={() => handleDeletepost(post.id)}
-              >
-                Delete
-              </button>
-              <button
-                className="EditpostButton"
-                onClick={() => handleEditpost(post.id, post.text)}
-              >
-                Edit
-              </button>
-            </div>
-          )}
-        </div>
-      ))}
+      <div className="post-card">
+        <h1>Post</h1>
+        <form onSubmit={handleSubmit}>
+          <textarea
+            placeholder="Post text"
+            cols={50}
+            rows={5}
+            onChange={handleChange}
+            value={formValues.content}
+          />
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+      <section className="new-post-card">
+        {posts?.map((post) => (
+          <div key={post._id}>
+            <h4>{post.content}</h4>
+            <button onClick={() => handleDeletepost(post._id)}>
+              Delete Post
+            </button>
+          </div>
+        ))}
+      </section>
     </div>
   )
 }
 
-export default Posts
+export default Post

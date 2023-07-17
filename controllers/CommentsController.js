@@ -3,7 +3,7 @@ const { Comment } = require('../models')
 const GetComments = async (req, res) => {
   try {
     const comments = await Comment.find({})
-    res.send(Comments)
+    res.send(comments)
   } catch (error) {
     throw error
   }
