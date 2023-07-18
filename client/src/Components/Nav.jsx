@@ -1,51 +1,33 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
-const Nav = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
-
-  const handleAuthClick = () => {
-    setIsLoggedIn(!isLoggedIn)
+const Nav = ({ user, handleLogOut }) => {
+  let userOptions
+  if (user) {
+    userOptions = (
+      <nav>
+        <h3>Welcome {user.email}!</h3>
+        <div className="user-nav-links">
+          <Link to="/feed">Feed</Link>
+          <Link to="/Comments">Comments</Link>
+          <Link to="/Posts">Posts</Link>
+          <Link onClick={handleLogOut} to="/">
+            Sign Out
+          </Link>
+        </div>
+      </nav>
+    )
   }
 
-  return (
-    <header>
-      <nav>
-        <ul className="nav-links">
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/Feed">Feed</Link>
-          </li>
-          <li>
-            <Link to="/Posts">Posts</Link>
-          </li>
-          <li>
-            <Link to="/Comments">Comments</Link>
-          </li>
-          {!isLoggedIn ? (
-            <>
-              <li>
-                <Link to="/SignIn" onClick={handleAuthClick}>
-                  Sign In
-                </Link>
-              </li>
-              <li>
-                <Link to="/Register">Register</Link>
-              </li>
-            </>
-          ) : (
-            <li>
-              <Link to="/SignOut" onClick={handleAuthClick}>
-                Sign Out
-              </Link>
-            </li>
-          )}
-        </ul>
-      </nav>
-    </header>
+  const publicOptions = (
+    <nav>
+      <Link to="/">Home</Link>
+      <Link to="/register">Register</Link>
+      <Link to="/signin">Sign In</Link>
+    </nav>
   )
+
+  return <header>{user ? userOptions : publicOptions}</header>
 }
 
 export default Nav
