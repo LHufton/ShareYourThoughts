@@ -1,44 +1,26 @@
 import { useState, useEffect } from 'react'
-import { BASE_URL } from '../Services/api'
-import axios from 'axios'
 import Client from '../Services/api'
+import axios from 'axios'
 
 const Post = (props) => {
   const [formValues, setFormValues] = useState({ content: '' })
   const [posts, setPosts] = useState([])
-
-  const [editPostContent, setEditPostContent] = useState('')
   const [editingPost, setEditingPost] = useState(null)
-  // const [date, setDate] = useState('none')
+  const [editPostContent, setEditPostContent] = useState('')
 
-  // const onDateChange = (e) => {
-  //   setDate(e.target.value)
-  //   // const newpost = {
-  //   //   id: Date.now(),
-  //   //   text: e.target.text.value,
-  //   //   date: date
-  //   // }
   const handleSubmit = async (e) => {
     e.preventDefault()
-    console.log(formValues)
-    // Might need to add '/new' to this path.
-    let response = await Client.post('/posts', formValues)
+    const newPost = {
+      content: formValues.content
+    }
+    let response = await Client.post('/posts', newPost)
     setPosts([...posts, response.data])
     setFormValues({ content: '' })
   }
+
   const handleChange = (e) => {
     setFormValues({ ...formValues, content: e.target.value })
   }
-  useEffect(() => {
-    console.log('Inside UseEffect')
-    const getPosts = async () => {
-      let response = await axios.get(`${BASE_URL}/posts`)
-      console.log(response)
-      console.log('should have response')
-      setPosts(response.data)
-    }
-    getPosts()
-  }, [])
 
   const handleChangeEdit = (e) => {
     setEditPostContent(e.target.value)
@@ -46,11 +28,11 @@ const Post = (props) => {
 
   const handleEdit = (id) => {
     const postEdit = posts.find((post) => post._id === id)
-    setEditPostContent(id)
-    setEditingPost(postEdit.content)
+    setEditPostContent(postEdit.content)
+    setEditingPost(id)
   }
 
-  const handledUpdatePost = async (id) => {
+  const handleUpdatePost = async (id) => {
     const updatedPost = {
       ...posts.find((post) => post._id === id),
       content: editPostContent
@@ -65,10 +47,14 @@ const Post = (props) => {
     await Client.delete(`/posts/${id}`)
     setPosts(posts.filter((post) => post._id !== id))
   }
-  const handleUpdatePost = async (id) => {
-    await Client.delete(`/posts/${id}`)
-    setPosts(posts.filter((post) => post._id !== id))
-  }
+
+  useEffect(() => {
+    const getPosts = async () => {
+      let response = await axios.get(`${Client.defaults.baseURL}/posts`)
+      setPosts(response.data)
+    }
+    getPosts()
+  }, [])
 
   return (
     <div>
@@ -109,4 +95,5 @@ const Post = (props) => {
     </div>
   )
 }
+
 export default Post

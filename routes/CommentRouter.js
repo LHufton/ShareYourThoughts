@@ -10,13 +10,13 @@ router.post(
   controller.CreateComment
 )
 router.put(
-  '/:post_id',
+  '/:comment_id',
   middleware.stripToken,
   middleware.verifyToken,
   controller.UpdateComment
 )
 router.delete(
-  '/:post_id',
+  '/:comment_id',
   middleware.stripToken,
   middleware.verifyToken,
   controller.DeleteComment

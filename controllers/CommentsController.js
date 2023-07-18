@@ -22,7 +22,10 @@ const UpdateComment = async (req, res) => {
   try {
     const comment = await Comment.findByIdAndUpdate(
       req.params.Comment_id,
-      req.body
+      req.content,
+      {
+        new: true
+      }
     )
     res.send(comment)
   } catch (error) {
@@ -32,10 +35,10 @@ const UpdateComment = async (req, res) => {
 
 const DeleteComment = async (req, res) => {
   try {
-    await Comment.deleteOne({ _id: req.params.Comment_id })
+    await Comment.deleteOne({ _id: req.params.comment_id })
     res.send({
       msg: 'Comment Deleted',
-      payload: req.params.Comment_id,
+      payload: req.params.comment_id,
       status: 'Ok'
     })
   } catch (error) {

@@ -14,15 +14,15 @@ const Feed = ({ user }) => {
     }
     handlePosts()
   }, [])
-  user ? (
+  return user ? (
     <div className="grid col-4">
       {posts.map((post) => (
         <div className="card" key={post.id}>
           <h3>{post.title}</h3>
-          {post.body.length >= 100 ? (
-            <p>{post.body.substring(0, 100)}...</p>
+          {post.content.length >= 1000 ? (
+            <p>{post.content.substring(0, 1000)}...</p>
           ) : (
-            <p>{post.body}</p>
+            <p>{post.content}</p>
           )}
         </div>
       ))}
