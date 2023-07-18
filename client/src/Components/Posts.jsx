@@ -37,8 +37,9 @@ const Post = (props) => {
       ...posts.find((post) => post._id === id),
       content: editPostContent
     }
-    await Client.put(`/posts/${id}`, updatedPost)
-    setPosts(posts.map((post) => (post._id === id ? updatedPost : post)))
+    console.log('updating post')
+    let response = await Client.put(`/posts/${id}`, updatedPost)
+    console.log(response)
     setEditingPost(null)
     setEditPostContent('')
   }

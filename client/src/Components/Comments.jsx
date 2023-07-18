@@ -27,7 +27,7 @@ const Comment = (props) => {
   }
 
   const handleEdit = (id) => {
-    const Comment = comments.find((comment) => comment._id === id)
+    const commentEdit = comments.find((comment) => comment._id === id)
     setEditCommentContent(commentEdit.content)
     setEditingComment(id)
   }
@@ -37,7 +37,7 @@ const Comment = (props) => {
       ...comments.find((comment) => comment._id === id),
       content: editCommentContent
     }
-    await Client.put(`/comments/${id}`, updatedComment)
+    let response = await Client.put(`/comments/${id}`, updatedComment)
     setComments(
       comments.map((comment) => (comment._id === id ? updatedComment : comment))
     )
