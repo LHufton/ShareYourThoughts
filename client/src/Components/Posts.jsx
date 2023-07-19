@@ -7,7 +7,7 @@ const Post = (props) => {
   const [posts, setPosts] = useState([])
   const [editingPost, setEditingPost] = useState(null)
   const [editPostContent, setEditPostContent] = useState('')
-  const [togglePostContent, setTogglePostComment] = useState(false)
+  const [togglePostContent, setTogglePostContent] = useState(false)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -44,8 +44,7 @@ const Post = (props) => {
     let response = await Client.put(`/posts/${id}`, updatedPost)
     setEditingPost(null)
     setEditPostContent('')
-    console.log('update')
-    setTogglePostComment((prevToggle) => (prevToggle = !prevToggle))
+    setTogglePostContent((prevToggle) => (prevToggle = !prevToggle))
   }
 
   const handleDeletePost = async (id) => {

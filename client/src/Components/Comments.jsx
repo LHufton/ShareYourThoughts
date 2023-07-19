@@ -11,7 +11,8 @@ const Comment = (props) => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     const newComment = {
-      content: formValues.content
+      content: formValues.content,
+      author: props.user.id
     }
     let response = await Client.post('/comments', newComment)
     setComments([...comments, response.data])
@@ -43,6 +44,7 @@ const Comment = (props) => {
     )
     setEditingComment(null)
     setEditCommentContent('')
+    setTogglePostComment((prevToggle) => (prevToggle = !prevToggle))
   }
 
   const handleDeleteComment = async (id) => {
@@ -95,6 +97,7 @@ const Comment = (props) => {
             {editingComment === comment._id && (
               <div>
                 <textarea
+                  className="edit-comment-text"
                   placeholder="Edit text"
                   onChange={handleChangeEdit}
                   value={editCommentContent}
