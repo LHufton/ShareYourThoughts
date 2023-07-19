@@ -83,7 +83,12 @@ const Comment = (props) => {
             >
               Delete
             </button>
-            <button onClick={() => handleEdit(comment._id)}>Edit</button>
+            <button
+              className="edit-text-button"
+              onClick={() => handleEdit(comment._id)}
+            >
+              Edit
+            </button>
             {editingComment === comment._id && (
               <div>
                 <textarea

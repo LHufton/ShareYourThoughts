@@ -181,9 +181,38 @@ font-size: 22px
   background-color: #000000;
   color: orange;
   display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  margin: 2px;
+  border: 1px solid white;
+  padding: 5px;
+
+
+}
+
+
+.edit-text-button {
+  background-color: #000000;
+  color: orange;
+  display: flex;
   justify-content: flex-start;
   margin: 2px;
   border: 1px solid white;
   padding: 5px;
 
 }
+
+.new-comment-card {
+  display: flex;
+  flex-grow: 1;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid orange;
+  max-width: 75vw;
+
+}
+
+
+
