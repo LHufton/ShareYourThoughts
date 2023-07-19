@@ -21,8 +21,8 @@ const CreateComment = async (req, res) => {
 const UpdateComment = async (req, res) => {
   try {
     const comment = await Comment.findByIdAndUpdate(
-      req.params.Comment_id,
-      req.content,
+      req.params.comment_id,
+      req.body,
       {
         new: true
       }

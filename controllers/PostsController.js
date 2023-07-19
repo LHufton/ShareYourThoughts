@@ -20,10 +20,12 @@ const CreatePost = async (req, res) => {
 
 const UpdatePost = async (req, res) => {
   try {
-    const post = await Post.findByIdAndUpdate(req.params.Post_id, req.content, {
+    console.log(req.body)
+    const post = await Post.findByIdAndUpdate(req.params.post_id, req.body, {
       new: true
     })
-    res.send(post)
+    console.log(post)
+    return res.status(200).json(post)
   } catch (error) {
     throw error
   }

@@ -1,4 +1,4 @@
-const { Schema, model } = require('mongoose')
+const { Schema } = require('mongoose')
 
 const feedSchema = new Schema(
   {
@@ -6,8 +6,7 @@ const feedSchema = new Schema(
     type: { type: String, enum: ['post', 'comment'], required: true },
     author: { type: Schema.Types.ObjectId, ref: 'User', required: true },
     parent: { type: Schema.Types.ObjectId, ref: 'Feed' },
-    posts: [{ type: Schema.Types.ObjectId, ref: 'Posts' }],
-    comments: [{ type: Schema.Types.ObjectId, ref: 'Comments' }]
+    posts: [{ type: Schema.Types.ObjectId, ref: 'Post' }]
   },
   { timestamps: true }
 )

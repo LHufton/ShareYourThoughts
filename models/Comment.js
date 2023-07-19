@@ -1,10 +1,10 @@
-const mongoose = require('mongoose')
-const { Schema } = mongoose
+const { Schema } = require('mongoose')
 
 const commentSchema = new Schema(
   {
     title: { type: String, required: false },
-    content: { type: String }
+    content: { type: String },
+    user: { type: Schema.Types.ObjectId, ref: 'User', required: false }
   },
   { timestamps: true }
 )

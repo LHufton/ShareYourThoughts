@@ -2,7 +2,7 @@
 
 ## Date:
 
-07/07/2023
+07/19/2023
 
 ### Author:
 
@@ -18,6 +18,10 @@ Luke Hufton
 
 ### Description
 
-#### **_About Me_**
+#### **_Share Your Thoughts_**
 
-The purpose of this app is to combine social media with an open place to share your thoughts and feelings about the world through blog posts and with comments and reactions per post. Post-mvp idea is to have users connect with one another through profile choices.
+It's oftentimes easier to express ourselves through text from behind a screen than it is face to face even with those closest to us. The goal of Share Your Thoughts is to allow people to communicate to their friends and family to share their thoughts through posts and comments. Users will be able
+
+### Technologies
+
+![GitHub top language](https://img.shields.io/github/languages/top/ProPip23/UnsocialMedia)
