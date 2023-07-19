@@ -3,15 +3,17 @@ import Client from '../Services/api'
 import axios from 'axios'
 
 const Post = (props) => {
-  const [formValues, setFormValues] = useState({ content: '' })
+  const [formValues, setFormValues] = useState({ content: '', author: '' })
   const [posts, setPosts] = useState([])
   const [editingPost, setEditingPost] = useState(null)
   const [editPostContent, setEditPostContent] = useState('')
+  const [togglePostContent, setTogglePostComment] = useState(false)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     const newPost = {
-      content: formValues.content
+      content: formValues.content,
+      author: props.user.id
     }
     let response = await Client.post('/posts', newPost)
     setPosts([...posts, response.data])
@@ -37,11 +39,13 @@ const Post = (props) => {
       ...posts.find((post) => post._id === id),
       content: editPostContent
     }
+
     console.log('updating post')
     let response = await Client.put(`/posts/${id}`, updatedPost)
-    console.log(response)
     setEditingPost(null)
     setEditPostContent('')
+    console.log('update')
+    setTogglePostComment((prevToggle) => (prevToggle = !prevToggle))
   }
 
   const handleDeletePost = async (id) => {
@@ -55,14 +59,15 @@ const Post = (props) => {
       setPosts(response.data)
     }
     getPosts()
-  }, [])
+  }, [togglePostContent])
 
   return (
-    <div cl>
+    <div>
       <h1>What's on your mind?</h1>
       <div className="post-card">
         <form className="post-content-form" onSubmit={handleSubmit}>
           <textarea
+            className="post-text-input"
             placeholder="Post text"
             cols={15}
             rows={5}
