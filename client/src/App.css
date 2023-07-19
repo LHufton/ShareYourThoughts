@@ -176,3 +176,14 @@ font-size: 22px
   border: 1px solid orange;
   max-width: 75vw;
 }
+
+.delete-comment-button {
+  background-color: #000000;
+  color: orange;
+  display: flex;
+  justify-content: flex-start;
+  margin: 2px;
+  border: 1px solid white;
+  padding: 5px;
+
+}

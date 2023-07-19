@@ -77,7 +77,10 @@ const Comment = (props) => {
         {comments?.map((comment) => (
           <div key={comment._id}>
             <h4>{comment.content}</h4>
-            <button onClick={() => handleDeleteComment(comment._id)}>
+            <button
+              className="delete-comment-button"
+              onClick={() => handleDeleteComment(comment._id)}
+            >
               Delete
             </button>
             <button onClick={() => handleEdit(comment._id)}>Edit</button>
