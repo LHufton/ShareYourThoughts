@@ -58,18 +58,20 @@ const Post = (props) => {
   }, [])
 
   return (
-    <div>
+    <div cl>
+      <h1>What's on your mind?</h1>
       <div className="post-card">
-        <h1>Post</h1>
-        <form onSubmit={handleSubmit}>
+        <form className="post-content-form" onSubmit={handleSubmit}>
           <textarea
             placeholder="Post text"
-            cols={50}
+            cols={15}
             rows={5}
             onChange={handleChange}
             value={formValues.content}
           />
-          <button type="submit">Submit</button>
+          <button className="post-form-button" type="submit">
+            Submit
+          </button>
         </form>
       </div>
       <section className="new-post-card">

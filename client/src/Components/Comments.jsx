@@ -60,7 +60,7 @@ const Comment = (props) => {
 
   return (
     <div>
-      <div className="post-card">
+      <div className="comment-card">
         <h1>Comment</h1>
         <form onSubmit={handleSubmit}>
           <textarea
@@ -73,7 +73,7 @@ const Comment = (props) => {
           <button type="submit">Submit</button>
         </form>
       </div>
-      <section className="new-post-card">
+      <section className="new-comment-card">
         {comments?.map((comment) => (
           <div key={comment._id}>
             <h4>{comment.content}</h4>
