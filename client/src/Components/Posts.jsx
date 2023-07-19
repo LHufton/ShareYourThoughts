@@ -83,7 +83,12 @@ const Post = (props) => {
         {posts?.map((post) => (
           <div key={post._id}>
             <h4>{post.content}</h4>
-            <button onClick={() => handleDeletePost(post._id)}>Delete</button>
+            <button
+              className="delete-post-button"
+              onClick={() => handleDeletePost(post._id)}
+            >
+              Delete
+            </button>
             <button onClick={() => handleEdit(post._id)}>Edit</button>
             {editingPost === post._id && (
               <div>
