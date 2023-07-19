@@ -3,10 +3,11 @@ import Client from '../Services/api'
 import axios from 'axios'
 
 const Comment = (props) => {
-  const [formValues, setFormValues] = useState({ content: '' })
+  const [formValues, setFormValues] = useState({ content: '', author: '' })
   const [comments, setComments] = useState([])
   const [editingComment, setEditingComment] = useState(null)
   const [editCommentContent, setEditCommentContent] = useState('')
+  const [toggleCommentContent, setToggleCommentContent] = useState(false)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -44,7 +45,7 @@ const Comment = (props) => {
     )
     setEditingComment(null)
     setEditCommentContent('')
-    setTogglePostComment((prevToggle) => (prevToggle = !prevToggle))
+    setToggleCommentContent((prevToggle) => (prevToggle = !prevToggle))
   }
 
   const handleDeleteComment = async (id) => {
@@ -58,7 +59,7 @@ const Comment = (props) => {
       setComments(response.data)
     }
     getComments()
-  }, [])
+  }, [toggleCommentContent])
 
   return (
     <div>

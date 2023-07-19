@@ -40,7 +40,6 @@ const Post = (props) => {
       content: editPostContent
     }
 
-    console.log('updating post')
     let response = await Client.put(`/posts/${id}`, updatedPost)
     setEditingPost(null)
     setEditPostContent('')
