@@ -64,13 +64,16 @@ const Comment = (props) => {
         <h1>Comment</h1>
         <form onSubmit={handleSubmit}>
           <textarea
+            className="comment-text"
             placeholder="Comment text"
             cols={50}
             rows={5}
             onChange={handleChange}
             value={formValues.content}
           />
-          <button type="submit">Submit</button>
+          <button className="comment-submit-button-" type="submit">
+            Submit
+          </button>
         </form>
       </div>
       <section className="new-comment-card">
