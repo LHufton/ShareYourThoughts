@@ -166,6 +166,25 @@ font-size: 10px
   justify-content: flex-end;
 }
 
+.edit-post-button {
+  background-color: #000000;
+  color: orange;
+  display: flex;
+  justify-content: flex-start;
+  margin: 2px;
+  border: 1px solid white;
+  padding: 5px;
+}
+
+.update-post-button{
+  background-color: #000000;
+  color: orange;
+  display: flex;
+  justify-content: flex-start;
+  margin: 2px;
+  border: 1px solid white;
+  padding: 5px;
+}
 
 
 .delete-comment-button {

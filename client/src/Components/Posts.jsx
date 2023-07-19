@@ -89,7 +89,12 @@ const Post = (props) => {
             >
               Delete
             </button>
-            <button onClick={() => handleEdit(post._id)}>Edit</button>
+            <button
+              className="edit-post-button"
+              onClick={() => handleEdit(post._id)}
+            >
+              Edit
+            </button>
             {editingPost === post._id && (
               <div>
                 <textarea
