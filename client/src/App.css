@@ -5,6 +5,7 @@
   text-align: center;
 }
 
+/* Nav.jsx */
 .user-nav-links {
   display: flex;
   justify-content: space-between;
@@ -15,9 +16,18 @@
   max-width: 100%;
 }
 
-.nav-links li {
-  margin-right: 10px;
+.public-nav-links {
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 18px;
+  max-width: 100%;
 }
+
+
+
 
 header {
   background-color: #ee9149;
@@ -45,7 +55,7 @@ nav {
 
 .darkButton {
   background-color: #000000;
-  color: white;
+  color: orange;
   display: flex;
   justify-content: flex-start;
   margin: 2px;
@@ -87,9 +97,17 @@ nav {
   border: solid white 1px;
 }
 
-.inputTextbox{
+.inputTextbox {
   border: 10px;
   padding: '5px';
   margin: '10px';
   width: 200
+}
+
+
+.post-card {
+  border: 1px solid orange;
+  margin: '10px';
+  width: 2000;
+
 }

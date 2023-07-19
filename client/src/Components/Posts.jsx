@@ -85,7 +85,10 @@ const Post = (props) => {
                   onChange={handleChangeEdit}
                   value={editPostContent}
                 />
-                <button onClick={() => handleUpdatePost(post._id)}>
+                <button
+                  className="update-post-button"
+                  onClick={() => handleUpdatePost(post._id)}
+                >
                   Update
                 </button>
               </div>
