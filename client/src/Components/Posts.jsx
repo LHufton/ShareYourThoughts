@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import Client from '../Services/api'
+import Client from '../services/api'
 import axios from 'axios'
 
 const Post = (props) => {

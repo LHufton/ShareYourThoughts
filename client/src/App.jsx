@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Route, Routes } from 'react-router-dom'
-import { CheckSession } from './Services/Auth'
+import { CheckSession } from './services/Auth'
 import Nav from './Components/Nav'
 import Feed from './Pages/Feed'
 import Register from './Pages/Register'

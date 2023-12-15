@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import Client from '../Services/api'
+import Client from '../services/api'
 
 const Comment = (props) => {
   const [formValues, setFormValues] = useState({ content: '', author: '' })
