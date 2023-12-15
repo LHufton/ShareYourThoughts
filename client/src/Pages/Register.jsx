@@ -5,6 +5,7 @@ import { RegisterUser } from '../services/Auth'
 const Register = () => {
   let navigate = useNavigate()
 
+  // State for form values
   const [formValues, setFormValues] = useState({
     name: '',
     email: '',
@@ -12,29 +13,43 @@ const Register = () => {
     confirmPassword: ''
   })
 
+  // State for error message
+  const [errorMessage, setErrorMessage] = useState('')
+
+  // Handle change in form inputs
   const handleChange = (e) => {
     setFormValues({ ...formValues, [e.target.name]: e.target.value })
+    setErrorMessage('') // Reset error message on input change
   }
 
+  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault()
-    await RegisterUser({
-      name: formValues.name,
-      email: formValues.email,
-      password: formValues.password
-    })
-    setFormValues({
-      name: '',
-      email: '',
-      password: '',
-      confirmPassword: ''
-    })
-    navigate('/signin')
+    if (formValues.password !== formValues.confirmPassword) {
+      setErrorMessage('Passwords do not match.')
+      return
+    }
+    try {
+      await RegisterUser({
+        name: formValues.name,
+        email: formValues.email,
+        password: formValues.password
+      })
+      navigate('/signin')
+    } catch (error) {
+      if (error.response && error.response.data) {
+        setErrorMessage(error.response.data) // Set error message from server response
+      } else {
+        setErrorMessage('Registration failed. Please try again.')
+      }
+    }
   }
 
+  // Registration form
   return (
     <div className="signin col">
       <div className="card-overlay centered">
+        {errorMessage && <div className="error-message">{errorMessage}</div>}
         <form className="col" onSubmit={handleSubmit}>
           <div className="input-wrapper">
             <label htmlFor="name">Name</label>
@@ -42,7 +57,6 @@ const Register = () => {
               onChange={handleChange}
               name="name"
               type="text"
-              placeholder="John Smith"
               value={formValues.name}
               required
             />
@@ -53,12 +67,10 @@ const Register = () => {
               onChange={handleChange}
               name="email"
               type="email"
-              placeholder="example@example.com"
               value={formValues.email}
               required
             />
           </div>
-
           <div className="input-wrapper">
             <label htmlFor="password">Password</label>
             <input
@@ -82,11 +94,12 @@ const Register = () => {
           <button
             disabled={
               !formValues.email ||
-              (!formValues.password &&
-                formValues.confirmPassword === formValues.password)
+              !formValues.password ||
+              !formValues.confirmPassword ||
+              formValues.password !== formValues.confirmPassword
             }
           >
-            Sign In
+            Register
           </button>
         </form>
       </div>
