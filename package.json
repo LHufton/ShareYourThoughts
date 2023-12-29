@@ -24,7 +24,7 @@
     "@vitejs/plugin-react-swc": "^3.3.2",
     "vite": "^4.4.0"
   },
-  "main": "vite.config.js",
+  "main": "server.js",
   "keywords": [],
   "author": "",
   "license": "ISC",
