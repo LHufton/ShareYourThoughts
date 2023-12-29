@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 3001
 const db = require('./db')
 
 const app = express()
-
+// not registering
 app.use(cors())
 app.use(logger('tiny'))
 app.use(express.json())
