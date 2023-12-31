@@ -1,7 +1,7 @@
 const express = require('express')
 const logger = require('morgan')
 const cors = require('cors')
-const path = require('path') // Import path module
+const path = require('path')
 
 const AuthRouter = require('./routes/AuthRouter')
 const CommentRouter = require('./routes/CommentRouter')
