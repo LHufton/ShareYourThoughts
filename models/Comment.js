@@ -1,4 +1,5 @@
-const { Schema } = require('mongoose')
+const mongoose = require('mongoose')
+const { Schema } = mongoose
 
 const commentSchema = new Schema(
   {
@@ -9,4 +10,5 @@ const commentSchema = new Schema(
   { timestamps: true }
 )
 
-module.exports = commentSchema
+const Comment = mongoose.model('Comment', commentSchema)
+module.exports = Comment
