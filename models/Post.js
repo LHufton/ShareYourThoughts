@@ -1,9 +1,10 @@
-const { Schema } = require('mongoose')
+const mongoose = require('mongoose')
+const { Schema } = mongoose
 
 const postSchema = new Schema(
   {
     title: { type: String, required: false },
-    author: { type: Schema.Types.ObjectId, ref: 'user', required: true },
+    author: { type: Schema.Types.ObjectId, ref: 'User', required: true },
     content: { type: String },
     isPublic: { type: Boolean, default: false },
     comment: [{ type: Schema.Types.ObjectId, ref: 'Comment' }]
@@ -11,4 +12,5 @@ const postSchema = new Schema(
   { timestamps: true }
 )
 
-module.exports = postSchema
+const Post = mongoose.model('Post', postSchema)
+module.exports = Post

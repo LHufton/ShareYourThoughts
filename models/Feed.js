@@ -1,4 +1,5 @@
-const { Schema } = require('mongoose')
+const mongoose = require('mongoose')
+const { Schema } = mongoose
 
 const feedSchema = new Schema(
   {
@@ -11,6 +12,5 @@ const feedSchema = new Schema(
   { timestamps: true }
 )
 
-// const Feed = model('Feed', feedSchema)
-
-module.exports = feedSchema
+const Feed = mongoose.model('Feed', feedSchema)
+module.exports = Feed

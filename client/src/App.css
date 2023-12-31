@@ -90,7 +90,7 @@ nav {
 
 .homeH1, .homeH2 {
   display: flex;
-  padding: 2px;
+  padding: 1px;
   border: solid orange 5px;
 }
 
