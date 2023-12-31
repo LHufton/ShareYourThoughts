@@ -1,14 +1,14 @@
-const { useState, useEffect } = require('react')
-const { Routes, Route } = require('react-router-dom')
-const { CheckSession } = require('./Services/UserServices')
-const Nav = require('./Components/Nav')
-const Feed = require('./Components/Feed')
-const Register = require('./Pages/Register')
-const SignIn = require('./Pages/SignIn')
-const Home = require('./Pages/Home')
-const Comments = require('./Components/Comments')
-const Posts = require('./Components/Posts')
-require('./App.css')
+import { useState, useEffect } from 'react'
+import { Routes, Route } from 'react-router-dom'
+import { CheckSession } from './services/auth'
+import Nav from './Components/Nav'
+import Comments from './Components/Comments'
+import Posts from './Components/Posts'
+import Feed from './Pages/Feed'
+import Register from './Pages/Register'
+import SignIn from './Pages/SignIn'
+import Home from './Pages/Home'
+import './App.css'
 
 const App = () => {
   const [user, setUser] = useState(null)
