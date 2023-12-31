@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react'
-import { Route, Routes } from 'react-router-dom'
-import { CheckSession } from './services/Auth'
+import { Routes, Route } from 'react-router-dom'
+import { CheckSession } from './services/auth'
 import Nav from './Components/Nav'
+import Comments from './Components/Comments'
+import Posts from './Components/Posts'
 import Feed from './Pages/Feed'
 import Register from './Pages/Register'
 import SignIn from './Pages/SignIn'
 import Home from './Pages/Home'
-import Comments from './Components/Comments'
-import Posts from './Components/Posts'
 import './App.css'
 
 const App = () => {
