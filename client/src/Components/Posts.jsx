@@ -78,7 +78,7 @@ const Post = (props) => {
         </form>
       </div>
       <section className="new-post-card">
-        {posts?.map((post) => (
+        {posts.props?.map((post) => (
           <div key={post._id}>
             <h4>{post.content}</h4>
             <button

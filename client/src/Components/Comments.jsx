@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import Client from '../services/api'
+import axios from 'axios'
 
 const Comment = (props) => {
   const [formValues, setFormValues] = useState({ content: '', author: '' })
@@ -79,7 +80,7 @@ const Comment = (props) => {
         </form>
       </div>
       <section className="new-comment-card">
-        {comments?.map((comment) => (
+        {comments.props?.map((comment) => (
           <div key={comment._id}>
             <h4>{comment.content}</h4>
             <button
