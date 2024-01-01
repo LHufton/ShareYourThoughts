@@ -1,4 +1,4 @@
-const { User } = require('../models/User')
+const User = require('../models/User')
 const middleware = require('../middleware')
 
 const Register = async (req, res) => {
@@ -46,7 +46,7 @@ const Login = async (req, res) => {
 const UpdatePassword = async (req, res) => {
   try {
     const { oldPassword, newPassword } = req.body
-    let user = await User.findById(req.params.user_id)
+    let user = await User.findByIdAndUpdate(req.params.user_id)
     let matched = await middleware.comparePassword(
       user.passwordDigest,
       oldPassword
