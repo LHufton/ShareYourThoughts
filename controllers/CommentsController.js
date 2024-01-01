@@ -1,4 +1,4 @@
-const { Comment } = require('../models/User')
+const Comment = require('../models/Comment')
 
 const GetComments = async (req, res) => {
   const comments = await Comment.find({})
