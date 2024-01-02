@@ -10,31 +10,28 @@ const FeedRouter = require('./routes/FeedRouter')
 
 const PORT = process.env.PORT || 3001
 
-const db = require('./db')
-
 const app = express()
-// not registering
+
 app.use(cors())
 app.use(logger('tiny'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
-app.use(express.static(path.join(__dirname, 'client', 'dist')))
+// Serve static files from the React app
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, 'client', 'dist')))
+}
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'))
-})
-
+// API Routes
 app.use('/auth', AuthRouter)
 app.use('/comments', CommentRouter)
 app.use('/posts', PostRouter)
 app.use('/feed', FeedRouter)
 
+// The "catchall" handler: for any request that doesn't match the above, send back React's index.html file.
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, '../client/dist')))
-
   app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../client/dist', 'index.html'))
+    res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'))
   })
 }
 

@@ -1,115 +1,74 @@
 import { useState, useEffect } from 'react'
 import Client from '../services/api'
-import axios from 'axios'
 
 const Post = (props) => {
-  const [formValues, setFormValues] = useState({ content: '', author: '' })
   const [posts, setPosts] = useState([])
-  const [editingPost, setEditingPost] = useState(null)
-  const [editPostContent, setEditPostContent] = useState('')
-  const [togglePostContent, setTogglePostContent] = useState(false)
+  const [commentContent, setCommentContent] = useState('')
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    const newPost = {
-      content: formValues.content,
-      author: props.user.id
+  const fetchPosts = async () => {
+    try {
+      const fullUrl = Client.defaults.baseURL + '/posts' // Constructing the full URL
+      console.log('Full API URL:', fullUrl) // Debug: Log the full API URL
+
+      const response = await Client.get('/posts')
+      console.log('API Response:', response.data) // Debug: Log the API response data
+
+      if (Array.isArray(response.data)) {
+        setPosts(response.data)
+      } else {
+        console.error('API did not return an array. Response:', response.data) // Debug: Log an error if not an array
+        setPosts([]) // Reset to empty array if response is not an array
+      }
+    } catch (error) {
+      console.error('API call failed:', error) // Debug: Log the API call error
     }
-    let response = await Client.post('/posts', newPost)
-    setPosts([...posts, response.data])
-    setFormValues({ content: '' })
   }
 
-  const handleChange = (e) => {
-    setFormValues({ ...formValues, content: e.target.value })
+  const handleCommentChange = (e) => {
+    setCommentContent(e.target.value)
   }
 
-  const handleChangeEdit = (e) => {
-    setEditPostContent(e.target.value)
-  }
-
-  const handleEdit = (id) => {
-    const postEdit = posts.find((post) => post._id === id)
-    setEditPostContent(postEdit.content)
-    setEditingPost(id)
-  }
-
-  const handleUpdatePost = async (id) => {
-    const updatedPost = {
-      ...posts.find((post) => post._id === id),
-      content: editPostContent
+  const handleCommentSubmit = async (postId) => {
+    const newComment = {
+      content: commentContent,
+      author: props.user.id,
+      post: postId
     }
-
-    let response = await Client.put(`/posts/${id}`, updatedPost)
-    setEditingPost(null)
-    setEditPostContent('')
-    setTogglePostContent((prevToggle) => (prevToggle = !prevToggle))
-  }
-
-  const handleDeletePost = async (id) => {
-    await Client.delete(`/posts/${id}`)
-    setPosts(posts.filter((post) => post._id !== id))
+    await Client.post('/comments', newComment)
+    setCommentContent('')
+    fetchPosts() // Refetch posts to include new comment
   }
 
   useEffect(() => {
-    const getPosts = async () => {
-      let response = await axios.get(`${Client.defaults.baseURL}/posts`)
-      setPosts(response.data)
-    }
-    getPosts()
-  }, [togglePostContent])
+    fetchPosts()
+  }, [])
 
   return (
     <div>
       <h1>What's on your mind?</h1>
-      <div className="post-card">
-        <form className="post-content-form" onSubmit={handleSubmit}>
-          <textarea
-            className="post-text-input"
-            placeholder="Post text"
-            cols={15}
-            rows={5}
-            onChange={handleChange}
-            value={formValues.content}
-          />
-          <button className="post-form-button" type="submit">
-            Submit
-          </button>
-        </form>
-      </div>
+      {/* ... existing post submission form */}
       <section className="new-post-card">
-        {posts.props?.map((post) => (
-          <div key={post._id}>
-            <h4>{post.content}</h4>
-            <button
-              className="delete-post-button"
-              onClick={() => handleDeletePost(post._id)}
-            >
-              Delete
-            </button>
-            <button
-              className="edit-post-button"
-              onClick={() => handleEdit(post._id)}
-            >
-              Edit
-            </button>
-            {editingPost === post._id && (
-              <div>
-                <textarea
-                  placeholder="Edit text"
-                  onChange={handleChangeEdit}
-                  value={editPostContent}
-                />
-                <button
-                  className="update-post-button"
-                  onClick={() => handleUpdatePost(post._id)}
-                >
-                  Update
-                </button>
-              </div>
-            )}
-          </div>
-        ))}
+        {Array.isArray(posts) &&
+          posts.map((post) => (
+            <div key={post._id}>
+              <h4>{post.content}</h4>
+              {/* ... existing buttons for delete and edit */}
+              {post.comments &&
+                post.comments.map((comment) => (
+                  <div key={comment._id}>
+                    <p>{comment.content}</p>
+                  </div>
+                ))}
+              <textarea
+                placeholder="Write a comment..."
+                value={commentContent}
+                onChange={handleCommentChange}
+              />
+              <button onClick={() => handleCommentSubmit(post._id)}>
+                Submit Comment
+              </button>
+            </div>
+          ))}
       </section>
     </div>
   )

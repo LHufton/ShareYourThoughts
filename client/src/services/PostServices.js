@@ -9,26 +9,27 @@ export const GetPosts = async () => {
   }
 }
 
-export const CreatePosts = async () => {
+export const CreatePost = async (postData) => {
   try {
-    const res = await Client.post('/posts')
+    const res = await Client.post('/posts', postData)
     return res.data
   } catch (error) {
     throw error
   }
 }
 
-export const UpdatePosts = async () => {
+export const UpdatePost = async (postId, updateData) => {
   try {
-    const res = await Client.put('/posts')
+    const res = await Client.put(`/posts/${postId}`, updateData)
     return res.data
   } catch (error) {
     throw error
   }
 }
-export const DeletePosts = async () => {
+
+export const DeletePost = async (postId) => {
   try {
-    const res = await Client.delete('/posts')
+    const res = await Client.delete(`/posts/${postId}`)
     return res.data
   } catch (error) {
     throw error

@@ -7,7 +7,7 @@ const postSchema = new Schema(
     author: { type: Schema.Types.ObjectId, ref: 'User', required: true },
     content: { type: String },
     isPublic: { type: Boolean, default: false },
-    comment: [{ type: Schema.Types.ObjectId, ref: 'Comment' }]
+    comments: [{ type: Schema.Types.ObjectId, ref: 'Comment' }]
   },
   { timestamps: true }
 )
