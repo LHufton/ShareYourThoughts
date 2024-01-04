@@ -1,8 +1,9 @@
-import { useState } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 
 const Nav = ({ user, handleLogOut }) => {
   let userOptions
+
   if (user) {
     userOptions = (
       <nav className="user-nav-links">
@@ -21,7 +22,9 @@ const Nav = ({ user, handleLogOut }) => {
     <nav className="public-nav-links">
       <Link to="/">Home</Link>
       <Link to="/register">Register</Link>
-      <Link to="/signin">Sign In</Link>
+      <Link to="/auth/google" className="login">
+        Log In with Google
+      </Link>
     </nav>
   )
 

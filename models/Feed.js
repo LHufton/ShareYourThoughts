@@ -12,5 +12,4 @@ const feedSchema = new Schema(
   { timestamps: true }
 )
 
-const Feed = mongoose.model('Feed', feedSchema)
-module.exports = Feed
+module.exports = feedSchema

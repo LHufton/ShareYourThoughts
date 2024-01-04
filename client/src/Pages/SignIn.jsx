@@ -19,12 +19,27 @@ const SignIn = ({ setUser }) => {
     navigate('/home')
   }
 
+  const handleGoogleLogin = async () => {
+    try {
+      const response = await fetch('/auth/google', {
+        method: 'GET'
+      })
+
+      if (response.ok) {
+        window.location.href = response.url
+      } else {
+        console.error('Error initiating Google OAuth')
+      }
+    } catch (error) {
+      console.error('Error initiating Google OAuth', error)
+    }
+  }
+
   return (
     <div className="signin col">
       <div className="card-overlay centered">
         <form className="col" onSubmit={handleSubmit}>
           <div className="input-wrapper-email">
-            <label htmlFor="email">Email</label>
             <input
               onChange={handleChange}
               name="email"
@@ -35,7 +50,6 @@ const SignIn = ({ setUser }) => {
             />
           </div>
           <div className="input-wrapper-password">
-            <label htmlFor="password">Password</label>
             <input
               onChange={handleChange}
               type="password"
@@ -48,6 +62,9 @@ const SignIn = ({ setUser }) => {
             Sign In
           </button>
         </form>
+        <div className="google-login">
+          <button onClick={handleGoogleLogin}>Sign In with Google</button>
+        </div>
       </div>
     </div>
   )
