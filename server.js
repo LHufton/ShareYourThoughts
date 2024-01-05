@@ -35,7 +35,7 @@ app.use(
     saveUninitialized: true
   })
 )
-app.use(cors({ credentials: true, origin: 'http://localhost:3000' }))
+app.use(cors({ credentials: true, origin: 'http://localhost:5173' }))
 app.use(passport.initialize())
 app.use(passport.session())
 
@@ -56,13 +56,13 @@ passport.use(
     }
   )
 )
+
 app.use('/', IndexRouter)
 app.use('/auth', AuthRouter)
 app.use('/comments', CommentRouter)
 app.use('/posts', PostRouter)
 app.use('/feed', FeedRouter)
 
-// The "catchall" handler: for any request that doesn't match the above, send back React's index.html file.
 if (process.env.NODE_ENV === 'production') {
   app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'))
@@ -72,17 +72,16 @@ if (process.env.NODE_ENV === 'production') {
 app.listen(PORT, () => {
   console.log(`Running Express server on Port ${PORT} . . .`)
 })
+
 app.use(function (req, res, next) {
   next(createError(404))
 })
 
-// error handler
 app.use(function (err, req, res, next) {
   res.locals.message = err.message
   res.locals.error = req.app.get('env') === 'development' ? err : {}
-
   res.status(err.status || 500)
   res.render('error')
 })
 
-module.exports = app
+module.exports = { app, passport }
