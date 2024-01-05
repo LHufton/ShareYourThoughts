@@ -7,6 +7,7 @@ const methodOverride = require('method-override')
 const passport = require('passport')
 const session = require('express-session')
 const GoogleStrategy = require('passport-google-oauth20').Strategy
+const cors = require('cors')
 
 require('dotenv').config()
 require('./config/database')
@@ -21,7 +22,6 @@ const FeedRouter = require('./routes/Feed')
 const PORT = process.env.PORT || 3001
 
 const app = express()
-
 app.use(logger('dev'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
@@ -35,13 +35,14 @@ app.use(
     saveUninitialized: true
   })
 )
+app.use(cors({ credentials: true, origin: 'http://localhost:3000' }))
 app.use(passport.initialize())
 app.use(passport.session())
 
 const callbackURL =
   process.env.NODE_ENV === 'production'
     ? 'https://syt-final-app-8a5cf6789a1a.herokuapp.com/auth/google/callback'
-    : 'http://localhost:3000/auth/google/callback'
+    : 'http://localhost:5173/auth/google'
 
 passport.use(
   new GoogleStrategy(

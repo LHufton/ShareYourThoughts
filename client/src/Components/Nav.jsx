@@ -23,7 +23,7 @@ const Nav = ({ user, handleLogOut }) => {
       <Link to="/">Home</Link>
       <Link to="/register">Register</Link>
       <Link to="/auth/google" className="login">
-        Log In with Google
+        Sign in
       </Link>
     </nav>
   )
