@@ -1,5 +1,5 @@
 // var express = require('express')
-let router = require('express').Router()
+var router = require('express').Router()
 const passport = require('passport')
 
 // This app has no "home" page, but your projects should 😀
@@ -13,9 +13,9 @@ router.get(
     // which passport strategy is being used?
     'google',
     {
-      scope: ['profile', 'email']
+      scope: ['profile', 'email'],
       // optional
-      // prompt: 'select account'
+      prompt: 'select account'
     }
   )
 )
