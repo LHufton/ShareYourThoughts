@@ -11,6 +11,12 @@ const hashPassword = async (password) => {
 }
 
 const comparePassword = async (storedPassword, password) => {
+  if (!password || !storedPassword) {
+    console.error(
+      'Password comparison requires both password and stored password'
+    )
+    return false
+  }
   let passwordMatch = await bcrypt.compare(password, storedPassword)
   return passwordMatch
 }

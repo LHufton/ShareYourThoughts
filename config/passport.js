@@ -7,10 +7,9 @@ passport.use(
     {
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL:
-        process.env.NODE_ENV === 'production'
-          ? 'https://syt-final-app-8a5cf6789a1a.herokuapp.com/oauth2callback'
-          : 'http://localhost:5173/oauth2callback'
+      callbackURL: process.env.PORT
+        ? 'https://syt-final-app-8a5cf6789a1a.herokuapp.com/oauth2callback'
+        : 'http://localhost:3001/oauth2callback'
     },
     async (accessToken, refreshToken, profile, cb) => {
       try {

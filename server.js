@@ -41,8 +41,8 @@ app.use(passport.session())
 
 const callbackURL =
   process.env.NODE_ENV === 'production'
-    ? 'https://syt-final-app-8a5cf6789a1a.herokuapp.com/auth/google/callback'
-    : 'http://localhost:5173/auth/google'
+    ? 'https://syt-final-app-8a5cf6789a1a.herokuapp.com/oauth2callback'
+    : 'http://localhost:3001/oauth2callback'
 
 passport.use(
   new GoogleStrategy(
@@ -51,12 +51,12 @@ passport.use(
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
       callbackURL: callbackURL
     },
-    function (accessToken, refreshToken, profile, cb) {
+    async (accessToken, refreshToken, profile, cb) => {
       // Handle user profile
     }
   )
 )
-
+app.set('view engine', 'ejs')
 app.use('/', IndexRouter)
 app.use('/auth', AuthRouter)
 app.use('/comments', CommentRouter)

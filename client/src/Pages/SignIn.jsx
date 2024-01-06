@@ -19,20 +19,10 @@ const SignIn = ({ setUser }) => {
     navigate('/home')
   }
 
-  const handleGoogleLogin = async () => {
-    try {
-      const response = await fetch('/auth/google', {
-        method: 'GET'
-      })
-
-      if (response.ok) {
-        window.location.href = response.url
-      } else {
-        console.error('Error initiating Google OAuth')
-      }
-    } catch (error) {
-      console.error('Error initiating Google OAuth', error)
-    }
+  const handleGoogleLogin = () => {
+    ;<a href="/auth/google" className="google-login-button">
+      Sign In with Google
+    </a>
   }
 
   return (

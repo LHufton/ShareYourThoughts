@@ -21,10 +21,10 @@ router.get(
 )
 
 router.get(
-  '/oauth2callback',
+  '/auth/google',
   passport.authenticate('google', {
     successRedirect: '/home',
-    failureRedirect: '/home'
+    failureRedirect: '/signin'
   })
 )
 
